@@ -13,6 +13,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        \App\Models\User::factory()->create([
+            'name' => 'Admin',
+            'email' => 'admin@test.com',
+            'password' => bcrypt('12345678')
+        ]);
+
+        $this->call([
+            CountrySeeder::class,
+            ClubSeeder::class
+        ]);
     }
 }
