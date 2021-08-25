@@ -47,7 +47,7 @@
                                                     <span class="font-semibold"> {{ $club->name }}</span>
                                                 </td>
                                                 <td class="px-16 py-2 text-left">
-                                                    <span>{{ $club->country->name ?? '' }}</span>
+                                                    <span>{{ $club->country_code ?? '' }}</span>
                                                 </td>
                                                 <td class="px-1 py-2 text-center text-gray-600">
                                                     <div class="flex items-center justify-center ">

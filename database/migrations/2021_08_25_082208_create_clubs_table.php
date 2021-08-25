@@ -17,7 +17,7 @@ class CreateClubsTable extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('group_id')->nullable();
-            $table->foreignId('country_id')->nullable();
+            $table->string('country_code')->nullable();
             $table->timestamps();
         });
     }
