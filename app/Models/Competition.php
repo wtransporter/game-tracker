@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Club extends Model
+class Competition extends Model
 {
     use HasFactory;
 
@@ -13,7 +13,6 @@ class Club extends Model
 
     public function groups()
     {
-        return $this->belongsToMany(Group::class)
-            ->withPivot('scored', 'conceded', 'win', 'draw', 'lost', 'points');
+        return $this->hasMany(Group::class);
     }
 }

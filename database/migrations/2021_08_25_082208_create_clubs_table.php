@@ -16,7 +16,6 @@ class CreateClubsTable extends Migration
         Schema::create('clubs', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('group_id')->nullable();
             $table->string('country_code')->nullable();
             $table->timestamps();
         });
