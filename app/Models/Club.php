@@ -16,4 +16,9 @@ class Club extends Model
         return $this->belongsToMany(Group::class)
             ->withPivot('scored', 'conceded', 'win', 'draw', 'lost', 'points');
     }
+
+    public function competition()
+    {
+        return $this->belongsToMany(Competition::class, 'club_competition');
+    }
 }

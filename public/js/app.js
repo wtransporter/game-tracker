@@ -1869,10 +1869,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/competition/NewCompetition.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/competition/NewCompetition.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/competition-resources/AttachClub.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/competition-resources/AttachClub.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1895,34 +1895,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'AttachClub',
+  props: ['competition', 'club', 'visible'],
   data: function data() {
     return {
-      title: '',
-      size: 0,
-      group_size: 0
+      isVisible: this.visible
     };
   },
   methods: {
-    store: function store() {
+    assign: function assign() {
       var _this = this;
 
-      var newCompetiotion = {
-        name: this.title,
-        size: this.size,
-        group_size: this.group_size
-      };
-      axios.post('/competitions', newCompetiotion).then(function (response) {
-        _this.title = '';
-        _this.size = 0;
-        _this.group_size = 0;
+      axios.post("/competitions/".concat(this.competition.id, "/store/").concat(this.club.id)).then(function (response) {
+        _this.isVisible = !_this.isVisible;
       });
     }
   }
@@ -1955,7 +1941,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js"
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue").default);
-Vue.component('new-competition', __webpack_require__(/*! ./components/competition/NewCompetition.vue */ "./resources/js/components/competition/NewCompetition.vue").default);
+Vue.component('attach-club', __webpack_require__(/*! ./components/competition-resources/AttachClub.vue */ "./resources/js/components/competition-resources/AttachClub.vue").default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -37447,10 +37433,10 @@ component.options.__file = "resources/js/components/ExampleComponent.vue"
 
 /***/ }),
 
-/***/ "./resources/js/components/competition/NewCompetition.vue":
-/*!****************************************************************!*\
-  !*** ./resources/js/components/competition/NewCompetition.vue ***!
-  \****************************************************************/
+/***/ "./resources/js/components/competition-resources/AttachClub.vue":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/competition-resources/AttachClub.vue ***!
+  \**********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -37458,8 +37444,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _NewCompetition_vue_vue_type_template_id_3175850c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NewCompetition.vue?vue&type=template&id=3175850c& */ "./resources/js/components/competition/NewCompetition.vue?vue&type=template&id=3175850c&");
-/* harmony import */ var _NewCompetition_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NewCompetition.vue?vue&type=script&lang=js& */ "./resources/js/components/competition/NewCompetition.vue?vue&type=script&lang=js&");
+/* harmony import */ var _AttachClub_vue_vue_type_template_id_b1e7a604___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AttachClub.vue?vue&type=template&id=b1e7a604& */ "./resources/js/components/competition-resources/AttachClub.vue?vue&type=template&id=b1e7a604&");
+/* harmony import */ var _AttachClub_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AttachClub.vue?vue&type=script&lang=js& */ "./resources/js/components/competition-resources/AttachClub.vue?vue&type=script&lang=js&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -37469,9 +37455,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 ;
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
-  _NewCompetition_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
-  _NewCompetition_vue_vue_type_template_id_3175850c___WEBPACK_IMPORTED_MODULE_0__.render,
-  _NewCompetition_vue_vue_type_template_id_3175850c___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _AttachClub_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _AttachClub_vue_vue_type_template_id_b1e7a604___WEBPACK_IMPORTED_MODULE_0__.render,
+  _AttachClub_vue_vue_type_template_id_b1e7a604___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
   null,
@@ -37481,7 +37467,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/competition/NewCompetition.vue"
+component.options.__file = "resources/js/components/competition-resources/AttachClub.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
@@ -37502,10 +37488,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/competition/NewCompetition.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************************!*\
-  !*** ./resources/js/components/competition/NewCompetition.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************************/
+/***/ "./resources/js/components/competition-resources/AttachClub.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/components/competition-resources/AttachClub.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -37513,8 +37499,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NewCompetition_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./NewCompetition.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/competition/NewCompetition.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NewCompetition_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AttachClub_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AttachClub.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/competition-resources/AttachClub.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AttachClub_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
 
 /***/ }),
 
@@ -37535,19 +37521,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/competition/NewCompetition.vue?vue&type=template&id=3175850c&":
-/*!***********************************************************************************************!*\
-  !*** ./resources/js/components/competition/NewCompetition.vue?vue&type=template&id=3175850c& ***!
-  \***********************************************************************************************/
+/***/ "./resources/js/components/competition-resources/AttachClub.vue?vue&type=template&id=b1e7a604&":
+/*!*****************************************************************************************************!*\
+  !*** ./resources/js/components/competition-resources/AttachClub.vue?vue&type=template&id=b1e7a604& ***!
+  \*****************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NewCompetition_vue_vue_type_template_id_3175850c___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NewCompetition_vue_vue_type_template_id_3175850c___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AttachClub_vue_vue_type_template_id_b1e7a604___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AttachClub_vue_vue_type_template_id_b1e7a604___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NewCompetition_vue_vue_type_template_id_3175850c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./NewCompetition.vue?vue&type=template&id=3175850c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/competition/NewCompetition.vue?vue&type=template&id=3175850c&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AttachClub_vue_vue_type_template_id_b1e7a604___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AttachClub.vue?vue&type=template&id=b1e7a604& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/competition-resources/AttachClub.vue?vue&type=template&id=b1e7a604&");
 
 
 /***/ }),
@@ -37600,10 +37586,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/competition/NewCompetition.vue?vue&type=template&id=3175850c&":
-/*!**************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/competition/NewCompetition.vue?vue&type=template&id=3175850c& ***!
-  \**************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/competition-resources/AttachClub.vue?vue&type=template&id=b1e7a604&":
+/*!********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/competition-resources/AttachClub.vue?vue&type=template&id=b1e7a604& ***!
+  \********************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -37617,123 +37603,31 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("form", [
-      _c("div", { staticClass: "space-y-2" }, [
-        _c("div", [
-          _c(
-            "label",
-            {
-              staticClass: "block text-sm text-gray-800",
-              attrs: { for: "title" }
-            },
-            [_vm._v("Competition name")]
-          ),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.title,
-                expression: "title"
-              }
-            ],
-            staticClass: "h-8 rounded",
-            attrs: { id: "title", type: "text", name: "title" },
-            domProps: { value: _vm.title },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.title = $event.target.value
-              }
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", [
-          _c(
-            "label",
-            {
-              staticClass: "block text-sm text-gray-800",
-              attrs: { for: "size" }
-            },
-            [_vm._v("Number of groups")]
-          ),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.size,
-                expression: "size"
-              }
-            ],
-            staticClass: "h-8 rounded",
-            attrs: { id: "size", type: "number", name: "size" },
-            domProps: { value: _vm.size },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.size = $event.target.value
-              }
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", [
-          _c(
-            "label",
-            {
-              staticClass: "block text-sm text-gray-800",
-              attrs: { for: "group_size" }
-            },
-            [_vm._v("Number of clubs in group")]
-          ),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.group_size,
-                expression: "group_size"
-              }
-            ],
-            staticClass: "h-8 rounded",
-            attrs: { id: "group_size", type: "number", name: "group_size" },
-            domProps: { value: _vm.group_size },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.group_size = $event.target.value
-              }
-            }
-          })
-        ]),
-        _vm._v(" "),
+    _c(
+      "form",
+      {
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.assign.apply(null, arguments)
+          }
+        }
+      },
+      [
         _c(
           "button",
           {
-            staticClass:
-              "px-3 py-1 bg-blue-600 hover:bg-blue-700 transition duration-200 ease-in-out rounded text-white",
-            on: {
-              click: function($event) {
-                $event.preventDefault()
-                return _vm.store.apply(null, arguments)
-              }
-            }
+            staticClass: "text-blue-500 hover:text-blue-700 w-4",
+            attrs: { type: "submit" }
           },
-          [_vm._v("Next")]
+          [
+            _vm.isVisible
+              ? _c("span", [_vm._v("\n                Assign\n            ")])
+              : _c("span", [_vm._v("\n                Remove\n            ")])
+          ]
         )
-      ])
-    ])
+      ]
+    )
   ])
 }
 var staticRenderFns = []

@@ -20,6 +20,13 @@ class Group extends Model
 
     public function clubs()
     {
-        return $this->belongsToMany(Club::class)->withTimestamps();
+        return $this->belongsToMany(Club::class)
+            ->withTimestamps()
+            ->withPivot('scored', 'conceded', 'win', 'draw', 'lost', 'points');
+    }
+
+    public function matches()
+    {
+        return $this->belongsToMany(Group::class, 'club_group')->with('clubs')->withPivot('club_id');
     }
 }

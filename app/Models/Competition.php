@@ -15,4 +15,24 @@ class Competition extends Model
     {
         return $this->hasMany(Group::class);
     }
+
+    /**
+     * Get all of the group clubs for the competition.
+     */
+    public function groupMembers()
+    {
+        return $this->hasManyThrough(
+            Team::class,
+            Group::class,
+            'competition_id',
+            'group_id',
+            'id',
+            'id'
+        );
+    }
+
+    public function clubs()
+    {
+        return $this->belongsToMany(Club::class, 'club_competition')->withTimestamps()->where('year', now()->year);
+    }
 }
