@@ -22,7 +22,8 @@ class Group extends Model
     {
         return $this->belongsToMany(Club::class)
             ->withTimestamps()
-            ->withPivot('scored', 'conceded', 'win', 'draw', 'lost', 'points');
+            ->withPivot('scored', 'conceded', 'win', 'draw', 'lost', 'points')
+            ->orderByPivot('points', 'desc');
     }
 
     public function matches()

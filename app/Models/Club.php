@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -32,8 +31,6 @@ class Club extends Model
 
     public function scopeAvailable($query)
     {
-        $ids = $this->assigned()->get();
-
-        return $query->whereNotIn('id', $ids->pluck('id'));
+        return $query->whereNotIn('id', $this->assigned()->get()->pluck('id'));
     }
 }

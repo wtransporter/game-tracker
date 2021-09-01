@@ -6,9 +6,6 @@
     </x-slot>
 
     <x-slot name="slot">
-        <form action="{{ route('competitions.clubs.create', $competition->id) }}" method="GET">
-            <input id="search" name="search" type="text" placeholder="Search" value="{{ request('search') }}">
-        </form>
         <x-assign-club :clubs="$clubs" :competition="$competition"></x-assign-club>
     </x-slot>
 

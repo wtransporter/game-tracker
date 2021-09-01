@@ -1,6 +1,9 @@
 @props(['clubs', 'competition'])
 
 <div class="overflow-x-auto">
+    <form action="{{ route('competitions.clubs.create', $competition->id) }}" method="GET">
+        <input id="search" name="search" type="text" placeholder="Search" value="{{ request('search') }}">
+    </form>
     <div class="py-2 align-middle inline-block min-w-full">
         <div class="overflow-hidden">
             <table class=" table-auto w-full">

@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CompetitionController;
 use App\Http\Controllers\ClubCompetitionController;
+use App\Http\Controllers\GroupCompetitionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,5 +29,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('competitions/{competition}', [ClubCompetitionController::class, 'index'])->name('competitions.clubs.index');
     Route::get('competitions/{competition}/create', [ClubCompetitionController::class, 'create'])->name('competitions.clubs.create');
     Route::post('competitions/{competition}/store/{club}', [ClubCompetitionController::class, 'store'])->name('competitions.clubs.store');
+
+    Route::get('groups/{competition}', [GroupCompetitionController::class, 'index'])->name('groups.competitions.index');
+
     Route::get('search', [SearchController::class, 'index'])->name('search');
 });
