@@ -22,12 +22,12 @@ class Group extends Model
     {
         return $this->belongsToMany(Club::class)
             ->withTimestamps()
-            ->withPivot('scored', 'conceded', 'win', 'draw', 'lost', 'points')
+            ->withPivot('id', 'scored', 'conceded', 'win', 'draw', 'lost', 'points')
             ->orderByPivot('points', 'desc');
     }
 
     public function matches()
     {
-        return $this->belongsToMany(Group::class, 'club_group')->with('clubs')->withPivot('club_id');
+        return $this->belongsToMany(Group::class, 'club_group')->with('clubs')->withPivot(['club_id', 'id']);
     }
 }

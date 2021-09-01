@@ -31,6 +31,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('competitions/{competition}/store/{club}', [ClubCompetitionController::class, 'store'])->name('competitions.clubs.store');
 
     Route::get('groups/{competition}', [GroupCompetitionController::class, 'index'])->name('groups.competitions.index');
+    Route::post('competition/{competition}/groups/{groupId}', [GroupCompetitionController::class, 'store'])->name('groups.competitions.store');
 
     Route::get('search', [SearchController::class, 'index'])->name('search');
 });

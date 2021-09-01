@@ -35,4 +35,17 @@ class Competition extends Model
     {
         return $this->belongsToMany(Club::class, 'club_competition')->withTimestamps()->where('year', now()->year);
     }
+
+    public function scopeAssigned($query)
+    {
+        return $query->whereHas('clubs', function($query) {
+            $query->whereNotNull('club_id');
+        });
+    }
+
+    // public function availableClubs()
+    // {
+    //     $ids = $this->groupMembers->whereNotNull('club_id')->pluck('club_id');
+    //     return $this->clubs->whereNotIn('id', $ids)->pluck('id');
+    // }
 }
