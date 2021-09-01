@@ -19,10 +19,10 @@ class ClubCompetitionController extends Controller
     public function create(Competition $competition, Request $request)
     {
         $attributes = $request->validate([
-            'search' => 'sometimes'
+            'search' => ['sometimes', 'alpha_num', 'nullable']
         ]);
 
-        $clubs = Club::query();
+        $clubs = Club::available();
 
         if ($request->has('search')) {
             $clubs->where('name', 'like', '%' . $attributes['search'] . '%');

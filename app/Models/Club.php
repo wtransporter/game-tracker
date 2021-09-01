@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Club extends Model
 {
@@ -20,5 +21,19 @@ class Club extends Model
     public function competition()
     {
         return $this->belongsToMany(Competition::class, 'club_competition');
+    }
+
+    public function scopeAssigned($query)
+    {
+        return $query->whereHas('competition', function($query) {
+            $query->where('year', '=', now()->year);
+        });
+    }
+
+    public function scopeAvailable($query)
+    {
+        $ids = $this->assigned()->get();
+
+        return $query->whereNotIn('id', $ids->pluck('id'));
     }
 }

@@ -14,11 +14,6 @@ class CompetitionController extends Controller
         ]);
     }
 
-    public function clubs(Competition $competition)
-    {
-        return $competition->clubs;
-    }
-
     public function show(Competition $competition)
     {
         return $competition->load(['groups', 'groups.clubs']);

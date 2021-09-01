@@ -23,9 +23,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function() {
-    // Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/home', [CompetitionController::class, 'index'])->name('home');
-    Route::get('clubs/{competition}', [CompetitionController::class, 'clubs']);
     Route::get('competitions/{competition}', [CompetitionController::class, 'show']);
     Route::post('competitions', [CompetitionController::class, 'store'])->name('competitions.store');
     Route::get('competitions/{competition}', [ClubCompetitionController::class, 'index'])->name('competitions.clubs.index');
