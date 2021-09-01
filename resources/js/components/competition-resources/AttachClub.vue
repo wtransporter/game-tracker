@@ -5,7 +5,7 @@
                 <span v-if="isVisible">
                     Assign
                 </span>
-                <span v-else>
+                <span v-else class="text-red-500">
                     Remove
                 </span>
             </button>

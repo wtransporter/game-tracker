@@ -25,7 +25,7 @@
                         @foreach ($clubs as $club)
                         <tr class="bg-white border-2 border-gray-300">
                             <td class="px-16 py-2 text-left w-24">
-                                <span class="font-semibold"> {{ $loop->iteration }}</span>
+                                <span class="font-semibold"> {{ $loop->iteration + ($clubs->perPage() * ($clubs->currentPage()-1)) }}</span>
                             </td>
                             <td class="px-16 py-2 text-left">
                                 <span></span>
@@ -50,7 +50,7 @@
             </table>
         </div>
         <div class="mt-4">
-            {{ $clubs->links() }}
+            {{ $clubs->withQueryString()->links() }}
         </div>
     </div>
 </div>

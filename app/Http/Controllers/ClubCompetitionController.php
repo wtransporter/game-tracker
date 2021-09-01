@@ -4,13 +4,32 @@ namespace App\Http\Controllers;
 
 use App\Models\Club;
 use App\Models\Competition;
+use Illuminate\Http\Request;
 
 class ClubCompetitionController extends Controller
 {
-    public function create(Competition $competition)
+    public function index(Competition $competition)
     {
         return view('competitions.clubs.index', [
-            'clubs' => Club::paginate(40),
+            'clubs' => $competition->clubs()->paginate(40),
+            'competition' => $competition
+        ]);
+    }
+    
+    public function create(Competition $competition, Request $request)
+    {
+        $attributes = $request->validate([
+            'search' => 'sometimes'
+        ]);
+
+        $clubs = Club::query();
+
+        if ($request->has('search')) {
+            $clubs->where('name', 'like', '%' . $attributes['search'] . '%');
+        }
+
+        return view('competitions.clubs.index', [
+            'clubs' => $clubs->paginate(40),
             'competition' => $competition->load('clubs')
         ]);
     }

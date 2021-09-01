@@ -37623,7 +37623,9 @@ var render = function() {
           [
             _vm.isVisible
               ? _c("span", [_vm._v("\n                Assign\n            ")])
-              : _c("span", [_vm._v("\n                Remove\n            ")])
+              : _c("span", { staticClass: "text-red-500" }, [
+                  _vm._v("\n                Remove\n            ")
+                ])
           ]
         )
       ]
