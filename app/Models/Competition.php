@@ -45,6 +45,6 @@ class Competition extends Model
 
     public function games()
     {
-        return $this->hasMany(Game::class);
+        return $this->hasMany(Game::class)->orderBy('date', 'asc')->orderBy('time', 'asc');
     }
 }

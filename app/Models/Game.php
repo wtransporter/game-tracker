@@ -11,6 +11,17 @@ class Game extends Model
 
     protected $guarded = [];
 
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'date',
+    ];
+
     public function homeClub()
     {
         return $this->belongsTo(Club::class, 'home_id', 'id');
