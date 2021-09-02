@@ -50,7 +50,6 @@
                                 <span class="font-semibold"> {{ $loop->iteration }}</span>
                             </td>
                             <td class="p-2 flex items-center justify-between">
-                                {{-- @dd($selectedClubs->contains($item->pivot->club_id)) --}}
                                 @if ($selectedClubs->contains($item->pivot->club_id))
                                     @php
                                         $current = $selectedClubs->where('id', '=', $item->pivot->club_id)->first();

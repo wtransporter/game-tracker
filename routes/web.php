@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CompetitionController;
 use App\Http\Controllers\ClubCompetitionController;
 use App\Http\Controllers\GroupCompetitionController;
+use App\Http\Controllers\TimetableCompetitionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,8 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('groups/{competition}', [GroupCompetitionController::class, 'index'])->name('groups.competitions.index');
     Route::post('competition/{competition}/groups/{groupId}', [GroupCompetitionController::class, 'store'])->name('groups.competitions.store');
+
+    Route::post('competition/{competition}/timetable', [TimetableCompetitionController::class, 'store'])->name('competitions.timetable.store');
 
     Route::get('search', [SearchController::class, 'index'])->name('search');
 });

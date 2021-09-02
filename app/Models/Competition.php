@@ -43,9 +43,8 @@ class Competition extends Model
         });
     }
 
-    // public function availableClubs()
-    // {
-    //     $ids = $this->groupMembers->whereNotNull('club_id')->pluck('club_id');
-    //     return $this->clubs->whereNotIn('id', $ids)->pluck('id');
-    // }
+    public function games()
+    {
+        return $this->hasMany(Game::class);
+    }
 }
