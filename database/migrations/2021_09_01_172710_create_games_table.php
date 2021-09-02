@@ -23,7 +23,7 @@ class CreateGamesTable extends Migration
             $table->string('time')->default('00:00');
             $table->tinyInteger('hscore')->default('0');
             $table->tinyInteger('ascore')->default('0');
-            $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('status')->nullable();
             $table->timestamps();
         });
     }

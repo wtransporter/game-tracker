@@ -15,7 +15,7 @@
                 <table class=" table-auto w-full">
                     <thead class="justify-between">
                         <tr class="bg-blue-700">
-                            <th class="p-2 text-center" colspan="8">
+                            <th class="p-2 text-center" colspan="9">
                                 <span class="text-gray-200">{{ $group->name }}</span>
                             </th>
                         </tr>
@@ -37,6 +37,9 @@
                             </th>
                             <th class="p-2 text-center">
                                 <span class="text-gray-500 text-sm font-normal">GC</span>
+                            </th>
+                            <th class="p-2 text-center">
+                                <span class="text-gray-500 text-sm font-normal">GD</span>
                             </th>
                             <th class="p-2 text-center">
                                 <span class="text-gray-500 text-sm font-normal">Pts</span>
@@ -87,6 +90,9 @@
                             </td>
                             <td class="w-10 py-2 text-center">
                                 <span>{{ $item->clubs[$loop->iteration-1]->pivot->conceded ?? 0 }}</span>
+                            </td>
+                            <td class="w-10 py-2 text-center">
+                                <span>{{ $item->clubs[$loop->iteration-1]->pivot->scored - $item->clubs[$loop->iteration-1]->pivot->conceded ?? 0 }}</span>
                             </td>
                             <td class="w-10 py-2 text-center">
                                 <span>{{ $item->clubs[$loop->iteration-1]->pivot->points ?? 0 }}</span>

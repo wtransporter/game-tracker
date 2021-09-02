@@ -28,6 +28,6 @@ class Group extends Model
 
     public function matches()
     {
-        return $this->belongsToMany(Group::class, 'club_group')->with('clubs')->withPivot(['club_id', 'id']);
+        return $this->belongsToMany(Group::class, 'club_group')->with('clubs')->withPivot(['club_id', 'id'])->orderBy('points', 'desc');
     }
 }

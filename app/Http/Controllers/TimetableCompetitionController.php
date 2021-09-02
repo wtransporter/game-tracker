@@ -25,15 +25,41 @@ class TimetableCompetitionController extends Controller
         $game->load(['homeClub', 'awayClub']);
 
         if ($request->has('hscore')) {
-            $game->increment('hscore');
             $game->homeClub->team()->increment('scored');
             $game->awayClub->team()->increment('conceded');
+
+            if ($game->hscore > $game->ascore) {
+                $game->increment('hscore');
+            } else if ($game->hscore < $game->ascore) {
+                $game->increment('hscore');
+                if ($game->hscore == $game->ascore) {
+                    $game->homeClub->team()->update(['lost' => DB::raw('lost-1'), 'draw' => DB::raw('draw+1'), 'points' => DB::raw('points+1')]);
+                    $game->awayClub->team()->update(['win' => DB::raw('win-1'), 'draw' => DB::raw('draw+1'), 'points' => DB::raw('points-2')]);
+                }
+            } else {
+                $game->increment('hscore');
+                $game->homeClub->team()->update(['win' => DB::raw('win+1'), 'draw' => DB::raw('draw-1'), 'points' => DB::raw('points+2')]);
+                $game->awayClub->team()->update(['lost' => DB::raw('lost+1'), 'draw' => DB::raw('draw-1'), 'points' => DB::raw('points-1')]);
+            }
         }
 
         if ($request->has('ascore')) {
-            $game->increment('ascore');
             $game->homeClub->team()->increment('conceded');
             $game->awayClub->team()->increment('scored');
+
+            if ($game->hscore < $game->ascore) {
+                $game->increment('ascore');
+            } else if ($game->hscore > $game->ascore) {
+                $game->increment('ascore');
+                if ($game->hscore == $game->ascore) {
+                    $game->homeClub->team()->update(['win' => DB::raw('win-1'), 'draw' => DB::raw('draw+1'), 'points' => DB::raw('points-2')]);
+                    $game->awayClub->team()->update(['lost' => DB::raw('lost-1'), 'draw' => DB::raw('draw+1'), 'points' => DB::raw('points+1')]);
+                }
+            } else {
+                $game->increment('ascore');
+                $game->homeClub->team()->update(['lost' => DB::raw('lost+1'), 'draw' => DB::raw('draw-1'), 'points' => DB::raw('points-1')]);
+                $game->awayClub->team()->update(['win' => DB::raw('win+1'), 'draw' => DB::raw('draw-1'), 'points' => DB::raw('points+2')]);
+            }
         }
 
         return redirect()->route('competitions.timetable.index', $game->competition_id);
@@ -45,16 +71,17 @@ class TimetableCompetitionController extends Controller
 
         $game->update(['status' => 1]);
 
-        if ($game->hscore > $game->ascore) {
-            $game->homeClub->team()->update(['win' => DB::raw('win+1'), 'points' => DB::raw('points+3')]);
-            $game->awayClub->team()->update(['lost' => DB::raw('lost+1')]);
-        } else if ($game->hscore < $game->ascore) {
-            $game->homeClub->team()->update(['lost' => DB::raw('lost+1')]);
-            $game->awayClub->team()->update(['win' => DB::raw('win+1'), 'points' => DB::raw('points+3')]);
-        } else {
-            $game->homeClub->team()->update(['draw' => DB::raw('draw+1'), 'points' => DB::raw('points+1')]);
-            $game->awayClub->team()->update(['draw' => DB::raw('draw+1'), 'points' => DB::raw('points+1')]);
-        }
+        return redirect()->route('competitions.timetable.index', $game->competition_id);
+    }
+
+    public function start(Game $game)
+    {
+        $game->load(['homeClub', 'awayClub']);
+// @dd($game->awayClub->team());
+        $game->update(['status' => 0]);
+// @dd($game->awayClub->team());
+        $game->homeClub->team()->update(['draw' => DB::raw('draw+1'), 'points' => DB::raw('points+1')]);
+        $game->awayClub->team()->update(['draw' => DB::raw('draw+1'), 'points' => DB::raw('points+1')]);
 
         return redirect()->route('competitions.timetable.index', $game->competition_id);
     }

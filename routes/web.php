@@ -38,6 +38,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('competition/{competition}/timetable', [TimetableCompetitionController::class, 'store'])->name('competitions.timetable.store');
     Route::patch('competition/timetable/{game}/update', [TimetableCompetitionController::class, 'update'])->name('competitions.timetable.update');
     Route::post('competition/timetable/{game}/finish', [TimetableCompetitionController::class, 'finish'])->name('competitions.timetable.finish');
+    Route::post('competition/timetable/{game}/start', [TimetableCompetitionController::class, 'start'])->name('competitions.timetable.start');
 
     Route::get('search', [SearchController::class, 'index'])->name('search');
 });
