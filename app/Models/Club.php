@@ -33,4 +33,9 @@ class Club extends Model
     {
         return $query->whereNotIn('id', $this->assigned()->get()->pluck('id'));
     }
+
+    public function team()
+    {
+        return Team::where('club_id', '=', $this->id)->first();
+    }
 }
