@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Game;
 use App\Models\Competition;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\GameUpdateRequest;
 
@@ -18,6 +19,20 @@ class TimetableCompetitionController extends Controller
         return view('competitions.games.index', [
             'allGames' => $grouped
         ]);
+    }
+
+    public function edit(Game $game)
+    {
+        return view('competitions.games.edit', [
+            'game' => $game->load(['homeClub', 'awayClub'])
+        ]);
+    }
+
+    public function updateDate(Game $game, Request $request)
+    {
+        $game->update(['date' => $request->get('date'), 'time' => $request->get('time')]);
+
+        return redirect()->route('competitions.timetable.edit', $game);
     }
 
     public function update(Game $game, GameUpdateRequest $request)
@@ -77,9 +92,9 @@ class TimetableCompetitionController extends Controller
     public function start(Game $game)
     {
         $game->load(['homeClub', 'awayClub']);
-// @dd($game->awayClub->team());
+
         $game->update(['status' => 0]);
-// @dd($game->awayClub->team());
+
         $game->homeClub->team()->update(['draw' => DB::raw('draw+1'), 'points' => DB::raw('points+1')]);
         $game->awayClub->team()->update(['draw' => DB::raw('draw+1'), 'points' => DB::raw('points+1')]);
 

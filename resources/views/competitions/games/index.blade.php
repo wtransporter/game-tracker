@@ -13,6 +13,10 @@
             <div class=" grid grid-cols-2">
                 @foreach ($games as $game)
                 <div class="text-gray-800 border p-6 flex justify-between relative">
+                    <a href="{{ route('competitions.timetable.edit', $game->id) }}" 
+                        class="absolute left-1 top-1 text-blue-500 hover:text-blue-700 cursor-pointer text-xs">
+                        Edit
+                    </a>
                     @if (is_null($game->status))
                         <form action="{{ route('competitions.timetable.start', $game->id) }}" method="POST">
                             @csrf
