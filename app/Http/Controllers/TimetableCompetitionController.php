@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Game;
 use App\Models\Competition;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Http\Requests\GameUpdateRequest;
+use App\Http\Services\StandingService;
 
 class TimetableCompetitionController extends Controller
 {
@@ -24,7 +24,7 @@ class TimetableCompetitionController extends Controller
     public function edit(Game $game)
     {
         return view('competitions.games.edit', [
-            'game' => $game->load(['homeClub', 'awayClub'])
+            'game' => $game
         ]);
     }
 
@@ -35,68 +35,25 @@ class TimetableCompetitionController extends Controller
         return redirect()->route('competitions.timetable.edit', $game);
     }
 
-    public function update(Game $game, GameUpdateRequest $request)
+    public function update(Game $game, GameUpdateRequest $request, StandingService $standing)
     {
-        $game->load(['homeClub', 'awayClub']);
-
-        if ($request->has('hscore')) {
-            $game->homeClub->team()->increment('scored');
-            $game->awayClub->team()->increment('conceded');
-
-            if ($game->hscore > $game->ascore) {
-                $game->increment('hscore');
-            } else if ($game->hscore < $game->ascore) {
-                $game->increment('hscore');
-                if ($game->hscore == $game->ascore) {
-                    $game->homeClub->team()->update(['lost' => DB::raw('lost-1'), 'draw' => DB::raw('draw+1'), 'points' => DB::raw('points+1')]);
-                    $game->awayClub->team()->update(['win' => DB::raw('win-1'), 'draw' => DB::raw('draw+1'), 'points' => DB::raw('points-2')]);
-                }
-            } else {
-                $game->increment('hscore');
-                $game->homeClub->team()->update(['win' => DB::raw('win+1'), 'draw' => DB::raw('draw-1'), 'points' => DB::raw('points+2')]);
-                $game->awayClub->team()->update(['lost' => DB::raw('lost+1'), 'draw' => DB::raw('draw-1'), 'points' => DB::raw('points-1')]);
-            }
-        }
-
-        if ($request->has('ascore')) {
-            $game->homeClub->team()->increment('conceded');
-            $game->awayClub->team()->increment('scored');
-
-            if ($game->hscore < $game->ascore) {
-                $game->increment('ascore');
-            } else if ($game->hscore > $game->ascore) {
-                $game->increment('ascore');
-                if ($game->hscore == $game->ascore) {
-                    $game->homeClub->team()->update(['win' => DB::raw('win-1'), 'draw' => DB::raw('draw+1'), 'points' => DB::raw('points-2')]);
-                    $game->awayClub->team()->update(['lost' => DB::raw('lost-1'), 'draw' => DB::raw('draw+1'), 'points' => DB::raw('points+1')]);
-                }
-            } else {
-                $game->increment('ascore');
-                $game->homeClub->team()->update(['lost' => DB::raw('lost+1'), 'draw' => DB::raw('draw-1'), 'points' => DB::raw('points-1')]);
-                $game->awayClub->team()->update(['win' => DB::raw('win+1'), 'draw' => DB::raw('draw-1'), 'points' => DB::raw('points+2')]);
-            }
-        }
+        $standing->calculate($game, $request);
 
         return redirect()->route('competitions.timetable.index', $game->competition_id);
     }
 
     public function finish(Game $game)
     {
-        $game->load(['homeClub', 'awayClub']);
-
         $game->update(['status' => 1]);
 
         return redirect()->route('competitions.timetable.index', $game->competition_id);
     }
 
-    public function start(Game $game)
+    public function start(Game $game, StandingService $standing)
     {
-        $game->load(['homeClub', 'awayClub']);
-
         $game->update(['status' => 0]);
 
-        $game->homeClub->team()->update(['draw' => DB::raw('draw+1'), 'points' => DB::raw('points+1')]);
-        $game->awayClub->team()->update(['draw' => DB::raw('draw+1'), 'points' => DB::raw('points+1')]);
+        $standing->startingPoints($game);
 
         return redirect()->route('competitions.timetable.index', $game->competition_id);
     }

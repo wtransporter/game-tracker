@@ -22,6 +22,11 @@ class Game extends Model
         'date',
     ];
 
+    protected $with = [
+        'homeClub',
+        'awayClub'
+    ];
+
     public function homeClub()
     {
         return $this->belongsTo(Club::class, 'home_id', 'id');
