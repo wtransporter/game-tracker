@@ -10,9 +10,9 @@
             <h3 class="bg-blue-700 text-white p-1 pl-4">
                 {{ $date }}
             </h3>
-            <div class=" grid grid-cols-2">
+            <div class="grid md:grid-cols-2">
                 @foreach ($games as $game)
-                <div class="text-gray-800 border p-6 flex justify-between relative">
+                <div class="text-gray-800 border px-2 py-6 md:px-6 flex justify-between relative">
                     <a href="{{ route('competitions.timetable.edit', $game->id) }}" 
                         class="absolute left-1 top-1 text-blue-500 hover:text-blue-700 cursor-pointer text-xs">
                         Edit
@@ -78,7 +78,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="text-center px-4">
+                    <div class="text-center md:px-4">
                         <span class="text-sm">
                             {{ $game->date->format('D, M j') }}
                         </span>

@@ -6,6 +6,18 @@
     </x-slot>
 
     <div class="mx-auto max-w-4xl">
+        @if ($errors->any())
+            <p class="text-red-700 text-xs p-3 bg-red-200 rounded font-semibold mb-4">
+                @foreach ($errors->all() as $error)
+                    {{ $error }} <br>
+                @endforeach
+            </p>
+        @endif
+        <div>
+            <a href="{{ route('clubs.index') }}" class="text-white cursor-pointer px-4 py-1 bg-blue-500 hover:bg-blue-700 rounded">
+               Back
+            </a>
+        </div>
         <form action="{{ route('clubs.update', $club->id) }}" method="POST" class="max-w-2xl p-6 mx-auto flex border rounded" enctype="multipart/form-data">
             @csrf
             @method('PATCH')

@@ -44,7 +44,7 @@
                             <td class="p-2 text-center">
                                 <span class="font-semibold"> {{ $club->country_code }}</span>
                             </td>
-                            <td class="px-1 py-2 text-center text-gray-600">
+                            <td class="px-1 py-2 text-gray-600 flex items-center justify-around">
                                 <div class="h-4 w-4">
                                     <a href="{{ route('clubs.edit', $club->id) }}" class="text-blue-500 hover:text-blue-700">
                                         <svg class="h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">

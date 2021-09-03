@@ -26,7 +26,7 @@ class ClubUpdateRequest extends FormRequest
     {
         return [
             'logo' => ['image'],
-            'name' => [Rule::unique('clubs', 'name')->ignore($this->id, 'id')]
+            'name' => [Rule::unique('clubs', 'name')->ignore($this->club)]
         ];
     }
 }
