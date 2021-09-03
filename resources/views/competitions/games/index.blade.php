@@ -30,12 +30,18 @@
                     @endif
                     <div class="flex justify-between w-full">
                         <div class="space-y-1">
-                            <h3>
-                                {{ $game->homeClub->name }}
-                            </h3>
-                            <h3>
-                                {{ $game->awayClub->name }}
-                            </h3>
+                            <div class=" flex items-center space-x-2">
+                                <img src="{{ $game->homeClub->logoPath() }}" alt="Logo" class="h-6 w-6">
+                                <h3>
+                                    {{ $game->homeClub->name }}
+                                </h3>
+                            </div>
+                            <div class=" flex items-center space-x-2">
+                                <img src="{{ $game->awayClub->logoPath() }}" alt="Logo" class="h-6 w-6">
+                                <h3>
+                                    {{ $game->awayClub->name }}
+                                </h3>
+                            </div>
                         </div>
                         <div class="px-2">
                             <div class="flex space-x-1">

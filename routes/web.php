@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ClubController;
 use App\Http\Controllers\CompetitionController;
 use App\Http\Controllers\ClubCompetitionController;
 use App\Http\Controllers\GroupCompetitionController;
@@ -43,4 +44,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('competition/timetable/{game}/start', [TimetableCompetitionController::class, 'start'])->name('competitions.timetable.start');
 
     Route::get('search', [SearchController::class, 'index'])->name('search');
+
+    Route::get('clubs', [ClubController::class, 'index'])->name('clubs.index');
+    Route::get('clubs/{club}/edit', [ClubController::class, 'edit'])->name('clubs.edit');
+    Route::patch('clubs/{club}/update', [ClubController::class, 'update'])->name('clubs.update');
 });

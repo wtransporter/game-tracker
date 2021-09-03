@@ -38,4 +38,11 @@ class Club extends Model
     {
         return Team::where('club_id', '=', $this->id)->first();
     }
+
+    public function logoPath()
+    {
+        return $this->logo 
+                ? asset('storage/logos/' . $this->logo)
+                : asset('/img/uefa.png');
+    }
 }
