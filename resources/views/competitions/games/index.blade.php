@@ -28,7 +28,7 @@
                             <button class="absolute right-1 top-1 text-red-500 hover:text-red-700 cursor-pointer text-xs">End</button>
                         </form>
                     @endif
-                    <div class="flex justify-between w-full">
+                    <div class="flex justify-between w-full text-sm">
                         <div class="space-y-1">
                             <div class=" flex items-center space-x-2">
                                 <img src="{{ $game->homeClub->logoPath() }}" alt="Logo" class="h-6 w-6">
@@ -44,10 +44,11 @@
                             </div>
                         </div>
                         <div class="px-2">
+                            @if (!is_null($game->status) && ($game->status == 0 || $game->status == 1))
                             <div class="flex space-x-1">
-                                <h3>
-                                    {{ $game->hscore }}
-                                </h3>
+                                    <h3>
+                                        {{ $game->hscore }}
+                                    </h3>
                                 @if (!is_null($game->status) && $game->status == 0)
                                 <form id="game-{{ $game->id }}" 
                                         action="{{ route('competitions.timetable.update', $game->id) }}" 
@@ -76,9 +77,10 @@
                                 </form>
                                 @endif
                             </div>
+                            @endif
                         </div>
                     </div>
-                    <div class="text-center md:px-4">
+                    <div class="text-center md:px-4 border-l border-solid border-gray-700 border-opacity-20">
                         <span class="text-sm">
                             {{ $game->date->format('D, M j') }}
                         </span>

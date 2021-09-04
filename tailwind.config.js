@@ -150,7 +150,7 @@ module.exports = {
             opacity: ['disabled'],
             backgroundColor: ['active', 'checked'],
             textColor: ['active'],
-            borderColor: ['checked'],
+            borderColor: ['checked', 'responsive', 'hover', 'focus', 'active', 'group-hover'],
         },
     },
 

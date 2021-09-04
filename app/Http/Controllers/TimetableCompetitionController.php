@@ -32,7 +32,7 @@ class TimetableCompetitionController extends Controller
     {
         $game->update(['date' => $request->get('date'), 'time' => $request->get('time')]);
 
-        return redirect()->route('competitions.timetable.edit', $game);
+        return redirect()->route('competitions.timetable.edit', $game)->with(['success' => 'Date and time updated successfully.']);
     }
 
     public function update(Game $game, GameUpdateRequest $request, StandingService $standing)

@@ -70,7 +70,7 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link href="{{ route('clubs.index') }}" :active="request()->routeIs('clubs.index')">
-                {{ __('Categories') }}
+                {{ __('Clubs') }}
             </x-responsive-nav-link>
         </div>
 
