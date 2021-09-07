@@ -13,7 +13,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $competition = Competition::latest()->get()->first();
+        $competition = Competition::latest()->first();
         $grouped = $competition->games()->get()->groupBy(function($query) {
             return $query->date->format('D, M j');
         });
