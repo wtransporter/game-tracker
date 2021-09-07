@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Club;
+use App\Models\Competition;
 
 class HomeController extends Controller
 {
@@ -13,8 +13,13 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $competition = Competition::latest()->get()->first();
+        $grouped = $competition->games()->get()->groupBy(function($query) {
+            return $query->date->format('D, M j');
+        });
+
         return view('home', [
-            'clubs' => Club::paginate(40)
+            'allGames' => $grouped
         ]);
     }
 }

@@ -9,7 +9,7 @@ class CompetitionController extends Controller
 {
     public function index()
     {
-        return view('home', [
+        return view('dashboard', [
             'competitions' => Competition::all()
         ]);
     }
@@ -29,20 +29,20 @@ class CompetitionController extends Controller
 
         $competition = Competition::create($request->only(['name', 'size']));
 
-        // for ($x = 1; $x <= $competition->size; $x++) {
-        //     $competition->groups()->create([
-        //         'name' => 'Group ' . $x,
-        //         'size' => $request->get('group_size')
-        //     ]);
-        // }
+        for ($x = 1; $x <= $competition->size; $x++) {
+            $competition->groups()->create([
+                'name' => 'Group ' . $x,
+                'size' => $request->get('group_size')
+            ]);
+        }
 
-        // foreach ($competition->groups as $group) {
-        //     for ($i = 0; $i < $group->size; $i++) { 
-        //         $group->clubs()->attach([
-        //             'club->id' => null
-        //         ]);
-        //     }
-        // }
+        foreach ($competition->groups as $group) {
+            for ($i = 0; $i < $group->size; $i++) { 
+                $group->clubs()->attach([
+                    'club->id' => null
+                ]);
+            }
+        }
 
         return response($competition, 201);
     }

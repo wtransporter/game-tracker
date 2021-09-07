@@ -5,6 +5,7 @@ use App\Http\Controllers\ClubController;
 use App\Http\Controllers\CompetitionController;
 use App\Http\Controllers\ClubCompetitionController;
 use App\Http\Controllers\GroupCompetitionController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TimetableCompetitionController;
 
 /*
@@ -18,14 +19,12 @@ use App\Http\Controllers\TimetableCompetitionController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index'])->name('user.home');
 
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function() {
-    Route::get('/home', [CompetitionController::class, 'index'])->name('home');
+    Route::get('/dashboard', [CompetitionController::class, 'index'])->name('home');
     Route::get('competitions/{competition}', [CompetitionController::class, 'show']);
     Route::post('competitions', [CompetitionController::class, 'store'])->name('competitions.store');
     Route::get('competitions/{competition}', [ClubCompetitionController::class, 'index'])->name('competitions.clubs.index');

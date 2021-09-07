@@ -86,7 +86,7 @@
                             </td>
                             <td class="w-10 py-2 text-center">
                                 <span>
-                                    {{ $item->clubs[$loop->iteration-1]->pivot->win +$item->clubs[$loop->iteration-1]->pivot->draw +$item->clubs[$loop->iteration-1]->pivot->lost ?? 0 }}
+                                    {{ isset($item->clubs[$loop->iteration-1]) ? $item->clubs[$loop->iteration-1]->pivot->win +$item->clubs[$loop->iteration-1]->pivot->draw +$item->clubs[$loop->iteration-1]->pivot->lost : 0 }}
                                 </span>
                             </td>
                             <td class="w-10 py-2 text-center">
@@ -105,7 +105,7 @@
                                 <span>{{ $item->clubs[$loop->iteration-1]->pivot->conceded ?? 0 }}</span>
                             </td>
                             <td class="w-10 py-2 text-center">
-                                <span>{{ $item->clubs[$loop->iteration-1]->pivot->scored - $item->clubs[$loop->iteration-1]->pivot->conceded ?? 0 }}</span>
+                                <span>{{ isset($item->clubs[$loop->iteration-1]) ? $item->clubs[$loop->iteration-1]->pivot->scored - $item->clubs[$loop->iteration-1]->pivot->conceded : 0 }}</span>
                             </td>
                             <td class="w-10 py-2 text-center">
                                 <span>{{ $item->clubs[$loop->iteration-1]->pivot->points ?? 0 }}</span>
