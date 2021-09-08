@@ -16,6 +16,8 @@
             <div class="flex-1 flex justify-center align-middle w-full text-3xl">
                 @if (!is_null($nextMatch->status))
                     {{ $nextMatch->hscore }} - {{ $nextMatch->ascore }}
+                @else
+                    VS
                 @endif
             </div>
             <div class="flex-1 flex flex-col items-center">
