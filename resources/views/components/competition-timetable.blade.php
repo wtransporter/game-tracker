@@ -1,6 +1,6 @@
 @props(['allGames'])
 
-<div class="mx-auto max-w-4xl">
+<div class="mx-auto max-w-4xl bg-white">
     @forelse ($allGames as $date => $games)
         <h3 class="bg-blue-700 text-white p-1 pl-4">
             {{ $date }}
