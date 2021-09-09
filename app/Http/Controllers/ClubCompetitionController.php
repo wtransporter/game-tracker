@@ -36,6 +36,12 @@ class ClubCompetitionController extends Controller
 
     public function store(Competition $competition, Club $club)
     {
+        if($competition->clubs->count() >= $competition->size * $competition->groups()->first()->size) {
+            return response()->json([
+                'message' => 'Competition groups are full.'
+            ], 422);
+        }
+
         if ($competition->clubs->contains($club)) {
             $competition->clubs()->detach($club->id);
         } else {

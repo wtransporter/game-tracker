@@ -37,6 +37,7 @@
                     </div>
                 </div>
             </main>
+            <the-flash />
         </div>
 
         <!-- Scripts -->

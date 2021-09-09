@@ -21,6 +21,7 @@ window.Vue = require('vue').default;
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('attach-club', require('./components/competition-resources/AttachClub.vue').default);
+Vue.component('the-flash', require('./components/ui/TheFlash.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

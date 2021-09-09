@@ -29,6 +29,9 @@ export default {
             axios.post(`/competitions/${this.competition.id}/store/${this.club.id}`)
             .then((response) => {
                 this.isVisible = !this.isVisible;
+            })
+            .catch((error) => {
+                flash(error.response.data.message, 'red');
             });
         },
     },
