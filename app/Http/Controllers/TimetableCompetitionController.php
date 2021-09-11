@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Game;
 use App\Models\Competition;
 use Illuminate\Http\Request;
-use App\Http\Requests\GameUpdateRequest;
+use Illuminate\Support\Facades\DB;
 use App\Http\Services\StandingService;
+use App\Http\Requests\GameUpdateRequest;
 
 class TimetableCompetitionController extends Controller
 {
@@ -60,8 +61,8 @@ class TimetableCompetitionController extends Controller
 
     public function store(Competition $competition)
     {
-        if ($this->hasGames($competition->id)) {
-            return redirect()->route('home')->withErrors('Games already generated');
+        if ($this->hasGames($competition->id) || !$this->groupsAreFull($competition)) {
+            return redirect()->route('home')->withErrors('Games already generated or groups are not full');
         }
 
         foreach ($competition->groups as $group) {
@@ -85,5 +86,22 @@ class TimetableCompetitionController extends Controller
     protected function hasGames(int $id): bool
     {
         return Game::where('competition_id', '=', $id)->get()->count() > 0;
+    }
+
+    protected function groupsAreFull($competition)
+    {
+        $ids = $competition->groups()->pluck('id');
+
+        $result = DB::table('club_group')
+             ->select(DB::raw('count(*) as club_count'))
+             ->whereIn('group_id', $ids)
+             ->whereNull('club_id')
+             ->get();
+
+        if ($result->first()->club_count > 0) {
+            return false;
+        }
+
+        return true;
     }
 }

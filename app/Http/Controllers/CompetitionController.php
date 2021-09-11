@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CompetitionStoreRequest;
 use App\Models\Competition;
-use Illuminate\Http\Request;
 
 class CompetitionController extends Controller
 {
@@ -16,34 +16,26 @@ class CompetitionController extends Controller
 
     public function show(Competition $competition)
     {
-        return $competition->load(['groups', 'groups.clubs']);
+        $ids = $competition->groupMembers->whereNotNull('club_id')->pluck('club_id');;
+        $clubs = $competition->clubs->whereNotIn('id', $ids);
+        $selectedClubs = $competition->clubs->whereIn('id', $ids);
+
+        return view('competitions.show', [
+            'competition' => $competition,
+            'groups' => $competition->groups->load('matches'),
+            'clubs' => $clubs,
+            'selectedClubs' => $selectedClubs
+        ]);
     }
 
-    public function store(Request $request)
+    public function store(CompetitionStoreRequest $request)
     {
-        $request->validate([
-            'name' => ['required'],
-            'size' => ['required', 'numeric'],
-            'group_size' => ['required', 'numeric']
-        ]);
+        $competition = Competition::create($request->validated());
 
-        $competition = Competition::create($request->only(['name', 'size']));
-
-        for ($x = 1; $x <= $competition->size; $x++) {
-            $competition->groups()->create([
-                'name' => 'Group ' . $x,
-                'size' => $request->get('group_size')
-            ]);
+        if ($request->wantsJson()) {
+            return response($competition, 201);
         }
 
-        foreach ($competition->groups as $group) {
-            for ($i = 0; $i < $group->size; $i++) { 
-                $group->clubs()->attach([
-                    'club->id' => null
-                ]);
-            }
-        }
-
-        return response($competition, 201);
+        return redirect()->route('home');
     }
 }

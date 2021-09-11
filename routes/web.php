@@ -25,14 +25,15 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/dashboard', [CompetitionController::class, 'index'])->name('home');
-    Route::get('competitions/{competition}', [CompetitionController::class, 'show']);
+    Route::get('competitions/{competition}', [CompetitionController::class, 'show'])->name('competitions.show');
     Route::post('competitions', [CompetitionController::class, 'store'])->name('competitions.store');
-    Route::get('competitions/{competition}', [ClubCompetitionController::class, 'index'])->name('competitions.clubs.index');
+    Route::get('competitions/{competition}/clubs', [ClubCompetitionController::class, 'index'])->name('competitions.clubs.index');
     Route::get('competitions/{competition}/create', [ClubCompetitionController::class, 'create'])->name('competitions.clubs.create');
     Route::post('competitions/{competition}/store/{club}', [ClubCompetitionController::class, 'store'])->name('competitions.clubs.store');
 
     Route::get('groups/{competition}', [GroupCompetitionController::class, 'index'])->name('groups.competitions.index');
     Route::post('competition/{competition}/groups/{groupId}', [GroupCompetitionController::class, 'store'])->name('groups.competitions.store');
+    Route::post('competition/{competition}/groups', [GroupCompetitionController::class, 'generateGroups'])->name('groups.competitions.generate');
 
     Route::get('competition/{competition}/timetable', [TimetableCompetitionController::class, 'index'])->name('competitions.timetable.index');
     Route::get('competition/timetable/{game}/edit', [TimetableCompetitionController::class, 'edit'])->name('competitions.timetable.edit');

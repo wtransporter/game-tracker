@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\GenerateGroups;
 use App\Models\Competition;
 use Illuminate\Http\Request;
 
@@ -29,5 +30,12 @@ class GroupCompetitionController extends Controller
 
         return redirect()->route('groups.competitions.index', $competition)->with(['success' => 'Club added']);
 
+    }
+
+    public function generateGroups(Competition $competition, Request $request, GenerateGroups $service)
+    {
+        $service->generate($competition, $request);
+
+        return redirect()->route('competitions.clubs.create', $competition);
     }
 }
