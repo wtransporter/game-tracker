@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CompetitionStoreRequest;
+use App\Http\Services\GenerateGroups;
 use App\Models\Competition;
 
 class CompetitionController extends Controller
@@ -28,9 +29,11 @@ class CompetitionController extends Controller
         ]);
     }
 
-    public function store(CompetitionStoreRequest $request)
+    public function store(CompetitionStoreRequest $request, GenerateGroups $service)
     {
-        $competition = Competition::create($request->validated());
+        $competition = Competition::create($request->except('group_size'));
+
+        $service->generate($competition, $request);
 
         if ($request->wantsJson()) {
             return response($competition, 201);

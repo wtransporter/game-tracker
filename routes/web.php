@@ -33,7 +33,6 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('groups/{competition}', [GroupCompetitionController::class, 'index'])->name('groups.competitions.index');
     Route::post('competition/{competition}/groups/{groupId}', [GroupCompetitionController::class, 'store'])->name('groups.competitions.store');
-    Route::post('competition/{competition}/groups', [GroupCompetitionController::class, 'generateGroups'])->name('groups.competitions.generate');
 
     Route::get('competition/{competition}/timetable', [TimetableCompetitionController::class, 'index'])->name('competitions.timetable.index');
     Route::get('competition/timetable/{game}/edit', [TimetableCompetitionController::class, 'edit'])->name('competitions.timetable.edit');

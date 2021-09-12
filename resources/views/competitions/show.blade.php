@@ -4,19 +4,10 @@
             {{ __('Competition') }}: {{ $competition->name }}
         </h2>
     </x-slot>
-    @if ($competition->groups->count() == 0 )
-        <form action="{{ route('groups.competitions.generate', $competition->id) }}" method="POST">
-            @csrf
-            <div class="space-y-2">
-                <div>
-                    <label for="group_size" class="block text-sm text-gray-800">Number of clubs in group</label>
-                    <input id="group_size" type="number" name="group_size" class="h-8 rounded">
-                </div>
-                <button class="px-3 py-1 bg-blue-600 hover:bg-blue-700 transition duration-200 ease-in-out rounded text-white">Next</button>
-            </div>
-        </form>
-
+    @if (session()->has('success'))
+        <p class="text-green-700 text-xs mt-2 p-3 bg-green-200 rounded font-semibold">{{ session('success') }}</p>
     @endif
+    @if ($competition->canGenerate())
         <form id="submit-form" action="{{ route('competitions.timetable.store', $competition->id) }}" method="POST">
             @csrf
             <button class="text-blue-500 hover:text-blue-700 w-4 h-4">
@@ -25,5 +16,6 @@
                 </svg>
             </button>
         </form>
+    @endif
     <x-groups-table :groups="$groups" :selectedClubs="$selectedClubs" :clubs="$clubs" />
 </x-admin>

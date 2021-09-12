@@ -74,13 +74,14 @@ class TimetableCompetitionController extends Controller
                             'group_id' => $group->id,
                             'home_id' => $home->id,
                             'away_id' => $away->id,
+                            'date' => now()
                         ]);
                     }
                 }
             } ;
         };
 
-        return redirect()->route('home');
+        return redirect()->route('home')->with('success', 'Competition timetable generated.');
     }
 
     protected function hasGames(int $id): bool

@@ -25,7 +25,8 @@ class CompetitionStoreRequest extends FormRequest
     {
         return [
             'name' => ['required'],
-            'size' => ['required', 'numeric']
+            'size' => ['required', 'numeric'],
+            'group_size' => ['required', 'numeric']
         ];
     }
 }

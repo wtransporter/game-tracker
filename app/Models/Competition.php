@@ -47,4 +47,9 @@ class Competition extends Model
     {
         return $this->hasMany(Game::class)->orderBy('date', 'asc')->orderBy('time', 'asc');
     }
+
+    public function canGenerate(): bool
+    {
+        return ($this->groups->count() > 0) && ($this->clubs->count() == $this->groups->first()->size * $this->size);
+    }
 }
