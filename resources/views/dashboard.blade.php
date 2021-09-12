@@ -9,24 +9,8 @@
         @if (session()->has('success'))
             <p class="text-green-700 text-xs mt-2 p-3 bg-green-200 rounded font-semibold">{{ session('success') }}</p>
         @endif
-        <form action="{{ route('competitions.store') }}" method="POST">
-            @csrf
-            <div class="space-y-2">
-                <div>
-                    <label for="name" class="block text-sm text-gray-800">Competition name</label>
-                    <input id="name" type="text" name="name" class="h-8 rounded" required>
-                </div>
-                <div>
-                    <label for="size" class="block text-sm text-gray-800">Number of groups</label>
-                    <input id="size" type="number" name="size" class="h-8 rounded" required>
-                </div>
-                <div>
-                    <label for="group_size" class="block text-sm text-gray-800">Number of clubs in group</label>
-                    <input id="group_size" type="number" name="group_size" class="h-8 rounded" required>
-                </div>
-                <button class="px-3 py-1 bg-blue-600 hover:bg-blue-700 transition duration-200 ease-in-out rounded text-white">Next</button>
-            </div>
-        </form>
+
+        <competition-create route="{{ route('competitions.store') }}"></competition-create>
 
         <div class="overflow-x-auto">
             @if ($errors->any())

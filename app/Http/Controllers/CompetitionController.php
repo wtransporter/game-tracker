@@ -39,6 +39,6 @@ class CompetitionController extends Controller
             return response($competition, 201);
         }
 
-        return redirect()->route('home');
+        // return redirect()->route('home');
     }
 }
