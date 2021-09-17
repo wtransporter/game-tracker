@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Group extends Model
 {
@@ -23,11 +24,15 @@ class Group extends Model
         return $this->belongsToMany(Club::class)
             ->withTimestamps()
             ->withPivot('id', 'scored', 'conceded', 'win', 'draw', 'lost', 'points')
-            ->orderByPivot('points', 'desc');
+            ->orderByPivot('points', 'desc')
+            ->orderByRaw(DB::raw('`club_group`.`scored` - `club_group`.`conceded` desc'));
     }
 
     public function matches()
     {
-        return $this->belongsToMany(Group::class, 'club_group')->with('clubs')->withPivot(['club_id', 'id'])->orderBy('points', 'desc');
+        return $this->belongsToMany(Group::class, 'club_group')->with('clubs')
+            ->withPivot(['club_id', 'id'])
+            ->orderBy('points', 'desc')
+            ->orderByRaw(DB::raw('`club_group`.`scored` - `club_group`.`conceded` desc'));;
     }
 }

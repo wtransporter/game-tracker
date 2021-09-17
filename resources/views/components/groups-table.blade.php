@@ -1,5 +1,7 @@
 @props(['groups', 'selectedClubs', 'clubs'])
 
+{{-- @dd($groups[2]) --}}
+
 @forelse ($groups as $group)
 <div class="overflow-x-auto">
     <div class="py-2 align-middle inline-block min-w-full">

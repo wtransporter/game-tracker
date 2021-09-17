@@ -40,7 +40,7 @@ class TimetableCompetitionController extends Controller
     {
         $standing->calculate($game, $request);
 
-        return redirect()->route('competitions.timetable.index', $game->competition_id);
+        return response($game, 200);
     }
 
     public function finish(Game $game)

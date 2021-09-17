@@ -41,28 +41,26 @@
                         </div>
                     </div>
                     <div class="px-2">
-                        @if (!is_null($game->status) && ($game->status == 0 || $game->status == 1) && Auth::check())
-                        <div class="flex space-x-1">
-                                <h3>
-                                    {{ $game->hscore }}
-                                </h3>
-                            @if (!is_null($game->status) && $game->status == 0)
-                            <form id="game-{{ $game->id }}" 
-                                    action="{{ route('competitions.timetable.update', $game->id) }}" 
-                                    method="POST" 
-                                    class="flex flex-col w-6 space-y-1">
-                                @csrf
-                                @method('PATCH')
-                                <input name="hscore" value="1" hidden class="outline-none focus:ring-1">
-                                <button type="submit" class="h-4 w-4 border border-green-700 flex justify-center items-center">+</button>
-                            </form>
-                            @endif
-                        </div>
-                        <div class="flex space-x-1">
-                            <h3>
+                        @if (!is_null($game->status) && ($game->status == 0 || $game->status == 1))
+                        <score-component route="{{ route('competitions.timetable.update', $game->id) }}"
+                            :game="{{ $game }}">
+                        </score-component>
+                        {{-- <score-component route="{{ route('competitions.timetable.update', $game->id) }}"
+                            :game="{{ $game }}"
+                            home="false">
+                        </score-component> --}}
+                        {{-- <div class="flex space-x-1">
+                            <h3 class="flex items-center {{ $game->hscore < $game->ascore ? 'text-black' : 'text-gray-600' }}">
                                 {{ $game->ascore }}
+                                <span class="text-xl w-6 pl-2 {!! $game->hscore > $game->ascore ? 'text-black' : 'text-white' !!}">
+                                    {!! $game->hscore < $game->ascore ? 
+                                        '<svg aria-label="Winner" height="8" role="img" width="6">
+                                            <polygon fill="#000" points="6,0 6,8 0,4"></polygon>
+                                        </svg>' : 
+                                        '' !!}
+                                </span>
                             </h3>
-                            @if (!is_null($game->status) && $game->status == 0)
+                            @if (!is_null($game->status) && $game->status == 0 && Auth::check())
                             <form id="game-{{ $game->id }}" 
                                     action="{{ route('competitions.timetable.update', $game->id) }}" 
                                     method="POST" 
@@ -73,17 +71,26 @@
                                 <button type="submit" class="h-4 w-4 border border-green-700 flex justify-center items-center">+</button>
                             </form>
                             @endif
-                        </div>
+                        </div> --}}
                         @endif
                     </div>
                 </div>
-                <div class="text-center md:px-4 border-l border-solid border-gray-700 border-opacity-20">
-                    <span class="text-sm">
-                        {{ $game->date->format('D, M j') }}
-                    </span>
-                    <span class="text-sm">
-                        {{ $game->time }}
-                    </span>
+                <div class="w-28 text-center md:px-4 border-l border-solid border-gray-700 border-opacity-20">
+                    @if ($game->status == 1)
+                        <span class="inlilne-block">
+                            FT
+                        </span>
+                        <span class="text-sm inline-block text-gray-600">
+                            {{ $game->date->format('M j') }}
+                        </span>
+                    @else
+                        <span class="text-sm">
+                            {{ $game->date->format('D, M j') }}
+                        </span>
+                        <span class="text-sm">
+                            {{ $game->time }}
+                        </span>
+                    @endif
                 </div>
             </div>
             @endforeach

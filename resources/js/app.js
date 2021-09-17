@@ -23,6 +23,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('attach-club', require('./components/competition-resources/AttachClub.vue').default);
 Vue.component('the-flash', require('./components/ui/TheFlash.vue').default);
 Vue.component('competition-create', require('./components/competition-resources/CompetitionCreate.vue').default);
+Vue.component('score-component', require('./components/competition-resources/ScoreComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

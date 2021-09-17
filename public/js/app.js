@@ -2000,6 +2000,91 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/competition-resources/ScoreComponent.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/competition-resources/ScoreComponent.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'ScoreComponent',
+  props: ['game', 'route'],
+  data: function data() {
+    return {
+      hscore: this.game.hscore,
+      ascore: this.game.ascore
+    };
+  },
+  methods: {
+    increaseScore: function increaseScore(scorer) {
+      var _game,
+          _this = this;
+
+      var game = (_game = {}, _defineProperty(_game, scorer, 1), _defineProperty(_game, "_method", "PATCH"), _game);
+      axios.post(this.route, game).then(function (response) {
+        _this[scorer]++;
+      })["catch"](function (error) {
+        flash(error.response.message, 'red');
+      });
+    }
+  },
+  computed: {
+    isHome: function isHome() {
+      return this.game.hscore > this.game.ascore ? true : false;
+    },
+    isAway: function isAway() {
+      return this.game.hscore < this.game.ascore ? true : false;
+    },
+    formVisible: function formVisible() {
+      return !this.game.status && this.game.status == 0;
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ui/TheFlash.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ui/TheFlash.vue?vue&type=script&lang=js& ***!
@@ -2095,6 +2180,7 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 Vue.component('attach-club', __webpack_require__(/*! ./components/competition-resources/AttachClub.vue */ "./resources/js/components/competition-resources/AttachClub.vue").default);
 Vue.component('the-flash', __webpack_require__(/*! ./components/ui/TheFlash.vue */ "./resources/js/components/ui/TheFlash.vue").default);
 Vue.component('competition-create', __webpack_require__(/*! ./components/competition-resources/CompetitionCreate.vue */ "./resources/js/components/competition-resources/CompetitionCreate.vue").default);
+Vue.component('score-component', __webpack_require__(/*! ./components/competition-resources/ScoreComponent.vue */ "./resources/js/components/competition-resources/ScoreComponent.vue").default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -37674,6 +37760,45 @@ component.options.__file = "resources/js/components/competition-resources/Compet
 
 /***/ }),
 
+/***/ "./resources/js/components/competition-resources/ScoreComponent.vue":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/competition-resources/ScoreComponent.vue ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _ScoreComponent_vue_vue_type_template_id_2000fd6e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ScoreComponent.vue?vue&type=template&id=2000fd6e& */ "./resources/js/components/competition-resources/ScoreComponent.vue?vue&type=template&id=2000fd6e&");
+/* harmony import */ var _ScoreComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ScoreComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/competition-resources/ScoreComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _ScoreComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _ScoreComponent_vue_vue_type_template_id_2000fd6e___WEBPACK_IMPORTED_MODULE_0__.render,
+  _ScoreComponent_vue_vue_type_template_id_2000fd6e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/competition-resources/ScoreComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/ui/TheFlash.vue":
 /*!*************************************************!*\
   !*** ./resources/js/components/ui/TheFlash.vue ***!
@@ -37761,6 +37886,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/competition-resources/ScoreComponent.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/components/competition-resources/ScoreComponent.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ScoreComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ScoreComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/competition-resources/ScoreComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ScoreComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/ui/TheFlash.vue?vue&type=script&lang=js&":
 /*!**************************************************************************!*\
   !*** ./resources/js/components/ui/TheFlash.vue?vue&type=script&lang=js& ***!
@@ -37824,6 +37965,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CompetitionCreate_vue_vue_type_template_id_489ee308___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CompetitionCreate_vue_vue_type_template_id_489ee308___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CompetitionCreate.vue?vue&type=template&id=489ee308& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/competition-resources/CompetitionCreate.vue?vue&type=template&id=489ee308&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/competition-resources/ScoreComponent.vue?vue&type=template&id=2000fd6e&":
+/*!*********************************************************************************************************!*\
+  !*** ./resources/js/components/competition-resources/ScoreComponent.vue?vue&type=template&id=2000fd6e& ***!
+  \*********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ScoreComponent_vue_vue_type_template_id_2000fd6e___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ScoreComponent_vue_vue_type_template_id_2000fd6e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ScoreComponent_vue_vue_type_template_id_2000fd6e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ScoreComponent.vue?vue&type=template&id=2000fd6e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/competition-resources/ScoreComponent.vue?vue&type=template&id=2000fd6e&");
 
 
 /***/ }),
@@ -38129,6 +38287,191 @@ var render = function() {
         ])
       ]
     )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/competition-resources/ScoreComponent.vue?vue&type=template&id=2000fd6e&":
+/*!************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/competition-resources/ScoreComponent.vue?vue&type=template&id=2000fd6e& ***!
+  \************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "flex space-x-1" }, [
+      _c(
+        "h3",
+        {
+          staticClass: "flex items-center",
+          class:
+            _vm.game.hscore > _vm.game.ascore ? "text-black" : "text-gray-600"
+        },
+        [
+          _vm._v("\n            " + _vm._s(_vm.hscore) + " \n            "),
+          _c(
+            "span",
+            {
+              staticClass: "text-xl w-6 pl-2",
+              class:
+                _vm.game.hscore > _vm.game.ascore ? "text-black" : "text-white"
+            },
+            [
+              _c(
+                "svg",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.isHome,
+                      expression: "isHome"
+                    }
+                  ],
+                  attrs: {
+                    "aria-label": "Winner",
+                    height: "8",
+                    role: "img",
+                    width: "6"
+                  }
+                },
+                [
+                  _c("polygon", {
+                    attrs: { fill: "#000", points: "6,0 6,8 0,4" }
+                  })
+                ]
+              )
+            ]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "form",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.formVisible,
+              expression: "formVisible"
+            }
+          ],
+          staticClass: "flex flex-col w-6 space-y-1",
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.increaseScore("hscore")
+            }
+          }
+        },
+        [
+          _c(
+            "button",
+            {
+              staticClass:
+                "h-4 w-4 border border-green-700 flex justify-center items-center",
+              attrs: { type: "submit" }
+            },
+            [_vm._v("+")]
+          )
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "flex space-x-1" }, [
+      _c(
+        "h3",
+        {
+          staticClass: "flex items-center",
+          class:
+            _vm.game.hscore < _vm.game.ascore ? "text-black" : "text-gray-600"
+        },
+        [
+          _vm._v("\n            " + _vm._s(_vm.ascore) + "\n                "),
+          _c(
+            "span",
+            {
+              staticClass: "text-xl w-6 pl-2",
+              class:
+                _vm.game.hscore < _vm.game.ascore ? "text-black" : "text-white"
+            },
+            [
+              _c(
+                "svg",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.isAway,
+                      expression: "isAway"
+                    }
+                  ],
+                  attrs: {
+                    "aria-label": "Winner",
+                    height: "8",
+                    role: "img",
+                    width: "6"
+                  }
+                },
+                [
+                  _c("polygon", {
+                    attrs: { fill: "#000", points: "6,0 6,8 0,4" }
+                  })
+                ]
+              )
+            ]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "form",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.formVisible,
+              expression: "formVisible"
+            }
+          ],
+          staticClass: "flex flex-col w-6 space-y-1",
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.increaseScore("ascore")
+            }
+          }
+        },
+        [
+          _c(
+            "button",
+            {
+              staticClass:
+                "h-4 w-4 border border-green-700 flex justify-center items-center",
+              attrs: { type: "submit" }
+            },
+            [_vm._v("+")]
+          )
+        ]
+      )
+    ])
   ])
 }
 var staticRenderFns = []
