@@ -14,9 +14,9 @@ class HomeController extends Controller
     public function index()
     {
         $competition = Competition::latest()->first();
-        $grouped = $competition->games()->get()->groupBy(function($query) {
+        $grouped = $competition ? $competition->games()->get()->groupBy(function($query) {
             return $query->date->format('D, M j');
-        });
+        }) : null;
 
         return view('home', [
             'allGames' => $grouped

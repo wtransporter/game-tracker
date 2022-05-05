@@ -16,11 +16,15 @@
         <h3 class="text-5xl text-gray-800 text-center pb-2">{{ __('Upcoming Matches') }}</h3>
         {{-- @dd($allGames->whereNull('status')) --}}
         <div class="grid grid-cols-1 md:grid-cols-3 py-4">
-            @foreach ($allGames->whereNull('status')->first()->sortBy('time')->take(3) as $item)
-                <x-match-card :nextMatch="$item"/>
-            @endforeach
+            @if (!is_null($allGames) && count($allGames) > 0)
+                @foreach ($allGames->whereNull('status')->first()->sortBy('time')->take(3) as $item)
+                    <x-match-card :nextMatch="$item"/>
+                @endforeach
+            @endif
         </div>
     </section>
 
-    <x-competition-timetable :allGames="$allGames"/>
+    @if ($allGames)
+        <x-competition-timetable :allGames="$allGames"/>
+    @endif
 </x-app>
