@@ -1,11 +1,12 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClubController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CompetitionController;
 use App\Http\Controllers\ClubCompetitionController;
 use App\Http\Controllers\GroupCompetitionController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TimetableCompetitionController;
 
 /*
@@ -21,7 +22,11 @@ use App\Http\Controllers\TimetableCompetitionController;
 
 Route::get('/', [HomeController::class, 'index'])->name('user.home');
 
-Auth::routes();
+if (app()->environment('production')) {
+    Auth::routes(['register' => false]);
+} else {
+    Auth::routes();
+}
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/dashboard', [CompetitionController::class, 'index'])->name('home');
