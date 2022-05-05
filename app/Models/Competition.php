@@ -33,7 +33,7 @@ class Competition extends Model
 
     public function clubs()
     {
-        return $this->belongsToMany(Club::class, 'club_competition')->withTimestamps()->where('year', now()->year);
+        return $this->belongsToMany(Club::class, 'club_competition')->withTimestamps()->where('year', $this->created_at->year);
     }
 
     public function scopeAssigned($query)
