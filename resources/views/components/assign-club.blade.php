@@ -56,7 +56,7 @@
                                     <div class="flex items-center justify-center ">
                                         <div class="w-4 mr-2 transform hover:text-primary hover:scale-110 cursor-pointer">
                                             <attach-club 
-                                                :competition="{{ $competition }}" 
+                                                :competition="{{ json_encode($competition) }}" 
                                                 :club="{{ $club }}"
                                                 :visible="{{ $competition->clubs->contains($club->id) ? 'false' : 'true' }}"></attach-club>
                                         </div>

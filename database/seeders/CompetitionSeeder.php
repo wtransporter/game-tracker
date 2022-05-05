@@ -16,7 +16,7 @@ class CompetitionSeeder extends Seeder
     {
         DB::statement(
             "INSERT INTO `competitions` (`id`, `name`, `size`, `created_at`, `updated_at`) VALUES
-            (1, 'Champions League', '16', now(), now())"
+            (1, 'Champions League', 4, now(), now())"
         );
 
         DB::statement("INSERT INTO `club_competition` (`id`, `competition_id`, `club_id`, `year`, `created_at`, `updated_at`) VALUES
